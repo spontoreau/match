@@ -1,81 +1,96 @@
 import { assertEquals, fc, test } from "../devDependencies.ts";
-import { Option, isNone, none, isSome, some, someKey, Some } from "./option.ts";
+import { isNone, isSome, none, Option, Some, some, someKey } from "./option.ts";
 
-test(`
+test(
+  `
   Given value
   When getting the value as an option
   Then a some instance object corresponding to value is returned
-`, () => {
-  fc.assert(fc.property(fc.anything(), (value: unknown) => {
-    const expected: Option<unknown> = {
-      optionKey: someKey,
-      value,
-    };
+`,
+  () => {
+    fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      const expected: Option<unknown> = {
+        optionKey: someKey,
+        value,
+      };
 
-    const actual = some(value);
+      const actual = some(value);
 
-    assertEquals(actual, expected);
-  }));
-});
+      assertEquals(actual, expected);
+    }));
+  },
+);
 
-test(`
+test(
+  `
   Given an option corresponding to a some instance object
   When asserting the option
   Then the instance is considered as a some instance object
-`, () => {
-  fc.assert(fc.property(fc.anything(), (value: unknown) => {
-    const expected = true;
+`,
+  () => {
+    fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      const expected = true;
 
-    const option: Option<unknown> = {
-      optionKey: someKey,
-      value,
-    };
+      const option: Option<unknown> = {
+        optionKey: someKey,
+        value,
+      };
 
-    const actual = isSome(option);
+      const actual = isSome(option);
 
-    assertEquals(actual, expected);
-  }));
-});
+      assertEquals(actual, expected);
+    }));
+  },
+);
 
-test(`
+test(
+  `
   Given an option corresponding to a none instance object
   When asserting the option
   Then the instance is not considered as a some instance object
-`, () => {
-  const expected = false;
+`,
+  () => {
+    const expected = false;
 
-  const actual = isSome(none);
+    const actual = isSome(none);
 
-  assertEquals(actual, expected);
-});
+    assertEquals(actual, expected);
+  },
+);
 
-test(`
+test(
+  `
   Given an option corresponding to a none instance object
   When asserting the option
   Then the instance is considered as a none instance object
-`, () => {
-  const expected = true;
+`,
+  () => {
+    const expected = true;
 
-  const actual = isNone(none);
+    const actual = isNone(none);
 
-  assertEquals(actual, expected);
-});
+    assertEquals(actual, expected);
+  },
+);
 
-test(`
+test(
+  `
   Given an option corresponding to a some instance object
   When asserting the option
   Then the instance is not considered as a none instance object
-`, () => {
-  fc.assert(fc.property(fc.anything(), (value: unknown) => {
-    const expected = false;
+`,
+  () => {
+    fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      const expected = false;
 
-    const option: Some<unknown> = {
-      optionKey: someKey,
-      value,
-    };
+      const option: Some<unknown> = {
+        optionKey: someKey,
+        value,
+      };
 
-    const actual = isNone(option);
+      const actual = isNone(option);
 
-    assertEquals(actual, expected);
-  }));
-});
+      assertEquals(actual, expected);
+    }));
+  },
+);

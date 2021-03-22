@@ -2,7 +2,7 @@ type Option<TValue> = Some<TValue> | None;
 
 type None = {
   optionKey: symbol;
-}
+};
 
 type Some<TValue> = None & {
   value: TValue;
@@ -31,5 +31,5 @@ const isNone = <TValue>(option: Option<TValue>): option is Some<TValue> => {
   return option.optionKey === noneKey;
 };
 
-export type { Option, Some, None };
-export { isSome, isNone, none, noneKey, some, someKey };
+export type { None, Option, Some };
+export { isNone, isSome, none, noneKey, some, someKey };
