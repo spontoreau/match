@@ -3,7 +3,7 @@ import { isNone, isSome, none, Option, Some, some, someKey } from "./option.ts";
 
 test(
   `
-  Given value
+  Given a value
   When getting the value as an option
   Then a some instance object corresponding to value is returned
 `,
