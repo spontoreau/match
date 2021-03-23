@@ -1,0 +1,30 @@
+name: match-ci
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }} # runs a test on Ubuntu, Windows and macOS
+
+    strategy:
+      matrix:
+        deno: ["v1.7.0", "v1.8.0"]
+        os: [macOS-latest, windows-latest, ubuntu-latest]
+
+    steps:
+      - name: Setup repo
+        uses: actions/checkout@v2
+
+      - name: Setup Deno
+        uses: denolib/setup-deno@v2
+        with:
+          deno-version: ${{ matrix.deno }}
+
+      - name: Cache development dependencies
+        run: deno cache devDependencies.ts
+
+      - name: Linting
+        run: deno lint --unstable
+
+      - name: Test
+        run: deno test
