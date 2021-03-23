@@ -1,4 +1,5 @@
 [![GitHub license](https://img.shields.io/github/license/behaviorland/match?style=flat-square)](LICENSE)
+[![CI](https://img.shields.io/github/workflow/status/behaviorland/match/match-ci?style=flat-square)](https://github.com/behaviorland/match/actions/workflows/main.yaml)
 [![Discord](https://img.shields.io/discord/820714341409095710?style=flat-square)](https://discord.gg/pqkZHKWMbU)
 [![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
 
