@@ -1,6 +1,6 @@
 import { assertEquals, fc, test } from "../devDependencies.ts";
 import { match } from "./match.ts";
-import { some, none } from "./option.ts";
+import { none, some } from "./option.ts";
 
 test(
   `
@@ -11,16 +11,21 @@ test(
   Then the matching pattern returned some result
 `,
   () => {
-    const value = 1;
+    fc.assert(
+      fc.property(
+        fc.anything(),
+        (value: unknown) => {
+          const expected = some(JSON.stringify(value));
 
-    const expected = some("1");
+          const actual = match(value)(
+            [(v) => true, (v) => JSON.stringify(v)],
+            [(v) => false, (v) => undefined],
+          )();
 
-    const actual = match<number, string>(value)(
-      [(v) => v === 1, () => "1"],
-      [(v) => v === 2, () => "2"]
-    )();
-
-    assertEquals(actual, expected);
+          assertEquals(actual, expected);
+        },
+      ),
+    );
   },
 );
 
@@ -33,16 +38,21 @@ test(
   Then the matching pattern returned no result
 `,
   () => {
-    const value = 3;
+    fc.assert(
+      fc.property(
+        fc.anything(),
+        (value: unknown) => {
+          const expected = none;
 
-    const expected = none;
+          const actual = match(value)(
+            [(v) => false, (v) => v],
+            [(v) => false, (v) => v],
+          )();
 
-    const actual = match<number, string>(value)(
-      [(v) => v === 1, () => "1"],
-      [(v) => v === 2, () => "2"]
-    )();
-
-    assertEquals(actual, expected);
+          assertEquals(actual, expected);
+        },
+      ),
+    );
   },
 );
 
@@ -55,15 +65,20 @@ test(
   When exeucting the match
   Then the matching pattern returned some value from the default execution`,
   () => {
-    const value = 3;
+    fc.assert(
+      fc.property(
+        fc.anything(),
+        (value: unknown) => {
+          const expected = some(JSON.stringify(value));
 
-    const expected = some("3");
+          const actual = match(value)(
+            [(v) => false, (v) => undefined],
+            [(v) => false, (v) => undefined],
+          )((_) => JSON.stringify(_));
 
-    const actual = match<number, string>(value)(
-      [(v) => v === 1, () => "1"],
-      [(v) => v === 2, () => "2"]
-    )(_ => "3");
-
-    assertEquals(actual, expected);
+          assertEquals(actual, expected);
+        },
+      ),
+    );
   },
 );
