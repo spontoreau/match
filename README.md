@@ -12,14 +12,16 @@ A simple pattern matching library for people who love currying!
 **match** is super easy to use:
 
 ```typescript
-import { match } from "https://deno.land/x/match/mod.ts";
+import { isSome, match } from "https://deno.land/x/match/mod.ts";
 
 const value = "Deno";
 
-const result = match(value)(
+const option = match<string, string>(value)(
   [(v) => v === "Deno", () => `Deno found!`],
   [(v) => v === "Node", () => `We are not looking for you Node, sorry!`],
 )();
+
+const result = isSome(option) ? option.value : "Not found";
 
 console.log(result);
 ```
