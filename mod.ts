@@ -2,5 +2,5 @@
 // All rights reserved.
 // MIT license.
 
-export * from "./lib/option.ts";
-export * from "./lib/match.ts";
+export { isNone, isSome } from "./lib/option.ts";
+export { match } from "./lib/match.ts";
