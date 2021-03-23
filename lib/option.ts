@@ -23,7 +23,7 @@ const some = <TValue>(value: TValue): Option<TValue> => {
 const none = <TValue>(): Option<TValue> => {
   return {
     type: "none",
-  }
+  };
 };
 
 const isSome = <TValue>(option: Option<TValue>): option is Some<TValue> => {

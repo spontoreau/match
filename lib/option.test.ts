@@ -34,7 +34,7 @@ test(
       // Given
       const expected: Option<unknown> = {
         type: "none",
-      }; 
+      };
 
       // When
       const actual = none();
