@@ -29,9 +29,9 @@ console.log(result);
 You can found more information in the
 [documentation](https://github.com/behaviorland/match/wiki/Documentation)!
 
-## Code of conduct
+## Code of Conduct
 
-This project has adopted the [code of conduct](CODE_OF_CONDUCT.md) defined by
+This project has adopted the [code of conduct](https://github.com/behaviorland/match/wiki/Code-of-conduct) defined by
 the Contributor Covenant.
 
 ## Contributing
