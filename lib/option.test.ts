@@ -1,5 +1,5 @@
 import { assertEquals, fc, test } from "../devDependencies.ts";
-import { isNone, isSome, none, Option, Some, some, someKey } from "./option.ts";
+import { isNone, isSome, none, Option, some } from "./option.ts";
 
 test(
   `
@@ -9,13 +9,37 @@ test(
 `,
   () => {
     fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      // Given
       const expected: Option<unknown> = {
-        optionKey: someKey,
+        type: "some",
         value,
       };
 
+      // When
       const actual = some(value);
 
+      // Then
+      assertEquals(actual, expected);
+    }));
+  },
+);
+
+test(
+  `
+  When getting none as an option
+  Then a none instance object is returned
+`,
+  () => {
+    fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      // Given
+      const expected: Option<unknown> = {
+        type: "none",
+      }; 
+
+      // When
+      const actual = none();
+
+      // Then
       assertEquals(actual, expected);
     }));
   },
@@ -29,15 +53,14 @@ test(
 `,
   () => {
     fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      // Given
       const expected = true;
+      const option = some(value);
 
-      const option: Option<unknown> = {
-        optionKey: someKey,
-        value,
-      };
-
+      // When
       const actual = isSome(option);
 
+      // Then
       assertEquals(actual, expected);
     }));
   },
@@ -50,10 +73,14 @@ test(
   Then the instance is not considered as a some instance object
 `,
   () => {
+    // Given
     const expected = false;
+    const option = none();
 
-    const actual = isSome(none);
+    // When
+    const actual = isSome(option);
 
+    // Then
     assertEquals(actual, expected);
   },
 );
@@ -65,10 +92,14 @@ test(
   Then the instance is considered as a none instance object
 `,
   () => {
+    // Given
     const expected = true;
+    const option = none();
 
-    const actual = isNone(none);
+    // When
+    const actual = isNone(option);
 
+    // Then
     assertEquals(actual, expected);
   },
 );
@@ -81,15 +112,14 @@ test(
 `,
   () => {
     fc.assert(fc.property(fc.anything(), (value: unknown) => {
+      // Given
       const expected = false;
+      const option = some(value);
 
-      const option: Some<unknown> = {
-        optionKey: someKey,
-        value,
-      };
-
+      // When
       const actual = isNone(option);
 
+      // Then
       assertEquals(actual, expected);
     }));
   },

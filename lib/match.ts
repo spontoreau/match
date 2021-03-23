@@ -28,7 +28,7 @@ const match: Match = (value) =>
         ([condition]) => condition(value),
       ) ?? [, wildcard];
 
-      return execution ? some(execution(value)) : none;
+      return execution ? some(execution(value)) : none();
     };
 
 export { match };

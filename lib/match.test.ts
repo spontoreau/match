@@ -42,7 +42,7 @@ test(
       fc.property(
         fc.anything(),
         (value: unknown) => {
-          const expected = none;
+          const expected = none();
 
           const actual = match(value)(
             [(v) => false, (v) => v],
