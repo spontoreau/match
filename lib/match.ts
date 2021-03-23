@@ -8,30 +8,27 @@ type Condition<TValue> = (value: TValue) => boolean;
 
 type Execution<TValue, TResult> = (value: TValue) => TResult;
 
-type Pattern<TValue, TResult> = [
+type Pattern<TValue, TResult> = readonly [
   condition: Condition<TValue>,
   execution: Execution<TValue, TResult>,
 ];
 
-type DefaultPattern<TValue, TResult> = (
-  toExecute?: Execution<TValue, TResult>,
-) => Option<TResult>;
-
-type PatternsToExecute<TValue, TResult> = (
-  ...patterns: ReadonlyArray<Pattern<TValue, TResult>>
-) => DefaultPattern<TValue, TResult>;
-
 type Match = <TValue, TResult>(
   value: TValue,
-) => PatternsToExecute<TValue, TResult>;
+) => (
+  ...patterns: ReadonlyArray<Pattern<TValue, TResult>>
+) => (
+  wildcard?: Execution<TValue, TResult>,
+) => Option<TResult>;
 
 const match: Match = (value) =>
   (...patterns) =>
     (wildcard) => {
-      const defaultExecute = () => !wildcard ? none : some(wildcard(value));
-      const [, execution] = patterns.find(([condition]) => condition(value)) ?? [];
+      const [, execution] = patterns.find(
+        ([condition]) => condition(value),
+      ) ?? [, wildcard];
 
-      return !execution ? defaultExecute() : some(execution(value));
+      return execution ? some(execution(value)) : none;
     };
 
 export { match };
