@@ -1,12 +1,16 @@
-type Option<TValue> = Some<TValue> | None;
+// Copyright 2021 the match library authors (see: https://github.com/behaviorland/match).
+// All rights reserved.
+// MIT license.
+
+type Some<TValue> = None & {
+  value: TValue;
+};
 
 type None = {
   optionKey: symbol;
 };
 
-type Some<TValue> = None & {
-  value: TValue;
-};
+type Option<TValue> = Some<TValue> | None;
 
 const someKey = Symbol("Some");
 
