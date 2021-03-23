@@ -13,17 +13,18 @@ A simple pattern matching library for people who love currying!
 ```typescript
 import { match } from "https://deno.land/x/match/mod.ts";
 
-const value = "Sylvain";
+const value = "Deno";
 
 const result = match(value)(
-  [(v) => v === "Sylvain", (v) => `Found you ${v}!`],
-  [(v) => v !== "Sylvain", () => `We are not looking for you, sorry!`],
+  [(v) => v === "Deno", () => `Deno found!`],
+  [(v) => v === "Node", () => `We are not looking for you Node, sorry!`],
 )();
 
 console.log(result);
 ```
 
-You can found more information in the [documentation](https://github.com/behaviorland/match/wiki/Documentation)!
+You can found more information in the
+[documentation](https://github.com/behaviorland/match/wiki/Documentation)!
 
 ## Code of conduct
 
