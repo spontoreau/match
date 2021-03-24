@@ -1,2 +1,6 @@
 # IDE
 .vscode
+
+# Coverage
+cov_profile
+coverage.txt
