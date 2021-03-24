@@ -1,7 +1,9 @@
-[![GitHub license](https://img.shields.io/github/license/behaviorland/match?style=flat-square)](LICENSE)
-[![CI](https://img.shields.io/github/workflow/status/behaviorland/match/match-ci?style=flat-square)](https://github.com/behaviorland/match/actions/workflows/main.yaml)
-[![Discord](https://img.shields.io/discord/820714341409095710?style=flat-square)](https://discord.gg/pqkZHKWMbU)
-[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg?style=flat-square)](https://gitmoji.dev)
+[![GitHub license](https://img.shields.io/github/license/behaviorland/match)](LICENSE)
+[![CI](https://img.shields.io/github/workflow/status/behaviorland/match/match-ci)](https://github.com/behaviorland/match/actions/workflows/main.yaml)
+[![Codecov](https://img.shields.io/codecov/c/github/behaviorland/match)](https://app.codecov.io/gh/behaviorland/match)
+[![DeepScan grade](https://deepscan.io/api/teams/13405/projects/16407/branches/351150/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=13405&pid=16407&bid=351150)
+[![Discord](https://img.shields.io/discord/820714341409095710)](https://discord.gg/pqkZHKWMbU)
+[![Gitmoji](https://img.shields.io/badge/gitmoji-%20😜%20😍-FFDD67.svg)](https://gitmoji.dev)
 
 # match
 
