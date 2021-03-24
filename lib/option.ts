@@ -30,7 +30,7 @@ const isSome = <TValue>(option: Option<TValue>): option is Some<TValue> => {
   return option.type === "some";
 };
 
-const isNone = <TValue>(option: Option<TValue>): option is Some<TValue> => {
+const isNone = <TValue>(option: Option<TValue>): option is None => {
   return option.type === "none";
 };
 
