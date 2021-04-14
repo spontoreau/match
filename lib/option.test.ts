@@ -30,7 +30,7 @@ test(
   Then a none instance object is returned
 `,
   () => {
-    fc.assert(fc.property(fc.anything(), (value: unknown) => {
+    fc.assert(fc.property(fc.anything(), () => {
       // Given
       const expected: Option<unknown> = {
         type: "none",

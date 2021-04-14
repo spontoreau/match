@@ -18,8 +18,8 @@ test(
           const expected = some(JSON.stringify(value));
 
           const actual = match(value)(
-            [(v) => true, (v) => JSON.stringify(v)],
-            [(v) => false, (v) => undefined],
+            [() => true, (v) => JSON.stringify(v)],
+            [() => false, () => undefined],
           )();
 
           assertEquals(actual, expected);
@@ -45,8 +45,8 @@ test(
           const expected = none();
 
           const actual = match(value)(
-            [(v) => false, (v) => v],
-            [(v) => false, (v) => v],
+            [() => false, (v) => v],
+            [() => false, (v) => v],
           )();
 
           assertEquals(actual, expected);
@@ -72,8 +72,8 @@ test(
           const expected = some(JSON.stringify(value));
 
           const actual = match(value)(
-            [(v) => false, (v) => undefined],
-            [(v) => false, (v) => undefined],
+            [() => false, () => undefined],
+            [() => false, () => undefined],
           )((_) => JSON.stringify(_));
 
           assertEquals(actual, expected);
